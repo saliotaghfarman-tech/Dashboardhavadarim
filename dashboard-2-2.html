@@ -594,10 +594,6 @@ tbody td {
           </div>
         </div>
       </div>
-<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:16px">
-  <div style="background:#151d2e;border:1px solid rgba(255,255,255,0.07);border-radius:12px;padding:12px;text-align:center">
-    <div style="font-size:10px;color:#8899aa;margin-bottom:6px">پرتکرارترین مسئول</div>
-    <div style="font-size:13px;font-weight:700;color:#c9a84c" id="top-person-name">—</div>
   </div>
   <div style="background:#151d2e;border:1px solid rgba(255,255,255,0.07);border-radius:12px;padding:12px;text-align:center">
     <div style="font-size:10px;color:#8899aa;margin-bottom:6px">میانگین مصوبه/جلسه</div>
@@ -919,13 +915,7 @@ function renderSessionBars() {
         <div class="bar-fill blue" style="width:${n/max*100}%"></div>
       </div>
     </div>`).join('');
-  const pc = {};
-allData.forEach(r => { pc[r.person] = (pc[r.person]||0)+1; });
-const top = Object.entries(pc).sort((a,b)=>b[1]-a[1])[0];
-if(top) document.getElementById('top-person-name').textContent = top[0];
-const avg = allData.length && new Set(allData.map(r=>r.session)).size ? Math.round(allData.length / new Set(allData.map(r=>r.session)).size) : 0;
-document.getElementById('avg-per-ses').textContent = avg;
-}
+  }
 
 function renderTopPersons() {
   const c = {};
