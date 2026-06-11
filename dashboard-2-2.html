@@ -785,6 +785,10 @@ async function loadProposals() {
           <div class="p-content">
             <div class="p-topic">${p.topic}</div>
             <div class="p-solution">${p.solution}</div>
+<div class="p-issue" style="margin-top:6px">
+  ${p.person ? `👤 ${p.person}` : ''} 
+  ${p.status ? `&nbsp;|&nbsp; <span style="color:${p.status==='انجام شده'?'#34d058':p.status==='در حال انجام'?'#e3a008':'#f05252'}">${p.status}</span>` : ''}
+</div>
           </div>
         </div>`).join('')
       : '<div class="empty">داده‌ای یافت نشد</div>';
@@ -804,7 +808,7 @@ async function loadData() {
 
     allData = rows.slice(2).filter(r => r.c && r.c[0] && r.c[0].v !== null).map(r => {
       const g = (i) => (r.c[i] && r.c[i].v != null) ? String(r.c[i].v).trim() : "";
-      return { session:g(0), num:g(1), text:g(2), person:g(3), deadline:g(4), status:g(5), updated:g(6), notes:g(7) };
+      return { num:g(0), topic:g(1), solution:g(2), person:g(3), status:g(4) };
     });
 
     const now = new Date().toLocaleString('fa-IR');
