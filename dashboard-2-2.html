@@ -802,7 +802,7 @@ async function loadData() {
     const json = JSON.parse(text.match(/google\.visualization\.Query\.setResponse\(([\s\S]*?)\);/)[1]);
     const rows = json.table.rows;
 
-    allData = rows.slice(0).filter(r => r.c && r.c[0] && r.c[0].v !== null).map(r => {
+    allData = rows.slice(2).filter(r => r.c && r.c[0] && r.c[0].v !== null).map(r => {
       const g = (i) => (r.c[i] && r.c[i].v != null) ? String(r.c[i].v).trim() : "";
       return { session:g(0), num:g(1), text:g(2), person:g(3), deadline:g(4), status:g(5), updated:g(6), notes:g(7) };
     });
