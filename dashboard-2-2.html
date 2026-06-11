@@ -744,46 +744,9 @@ tbody td {
         <div class="p-content">
           <div class="p-topic">اینترنت</div>
           <div class="p-solution">اختصاص فوری اینترنت به عموم فعالان اقتصادی، آزادسازی اینترنت با رعایت شرایط</div>
-        </div>
-      </div>
-      <div class="proposal-card">
-        <div class="p-num">۲</div>
-        <div class="p-content">
-          <div class="p-topic">اشتغال</div>
-          <div class="p-solution">تشکیل کارگروه ویژه مالیاتی و تأمین اجتماعی با اختیارات تام</div>
-        </div>
-      </div>
-      <div class="proposal-card">
-        <div class="p-num">۳</div>
-        <div class="p-content">
-          <div class="p-topic">منابع</div>
-          <div class="p-solution">اختصاص تسهیلات ویژه به تولیدکنندگان و تجار</div>
-        </div>
-      </div>
-      <div class="proposal-card">
-        <div class="p-num">۴</div>
-        <div class="p-content">
-          <div class="p-topic">بازسازی</div>
-          <div class="p-solution">تشکیل کارگروه ویژه با حضور اتاق بازرگانی، صمت، دبیر شورای هماهنگی بانک‌ها</div>
-        </div>
-      </div>
-      <div class="proposal-card">
-        <div class="p-num">۵</div>
-        <div class="p-content">
-          <div class="p-topic">فولاد مبارکه</div>
-          <div class="p-solution">تصمیم‌گیری با رعایت نظر استان، منافع پرسنل و پیمانکاران و رعایت دقیق الزامات زیست‌محیطی</div>
-        </div>
-      </div>
-      <div class="proposal-card">
-        <div class="p-num">۶</div>
-        <div class="p-content">
-          <div class="p-topic">اقتصاد و معیشت</div>
-          <div class="p-solution">در نظر گرفتن کشور یا استان به عنوان منطقه آزاد تجاری</div>
-        </div>
-      </div>
-    </div>
-  </div>
-
+<div class="proposal-grid" id="proposals-grid">
+  <div class="loading"><div class="spinner"></div>در حال بارگذاری...</div>
+</div>
 </main>
 
 <footer class="footer">
@@ -796,7 +759,7 @@ tbody td {
 const SHEET_ID   = "1Ca8-cKdsItjPD8k4SbfyeVsEWjV19U-aitdoJ_wYfHY";
 const SHEET_NAME = encodeURIComponent("مصوبات");
 const API_URL    = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:json&sheet=${SHEET_NAME}`;
-
+const PROPOSALS_URL = \https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:json&sheet=${encodeURIComponent("راهکارها")}`;`
 const WORKGROUPS = [
   { name:"بازار و اصناف",            chief:"محمد نمکی‌زاده",     icon:"🛒", color:"#3b9eff" },
   { name:"پایش و پشتیبانی تجارت",    chief:"جلیل مشکاتی",        icon:"📦", color:"#34d058" },
