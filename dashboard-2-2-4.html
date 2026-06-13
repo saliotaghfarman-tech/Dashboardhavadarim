@@ -1,0 +1,1050 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>هوای کسب‌وکار هم را داریم — اتاق بازرگانی اصفهان</title>
+<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg:        #080c12;
+  --surface:   #0e1420;
+  --surface2:  #151d2e;
+  --surface3:  #1a2438;
+  --border:    rgba(255,255,255,0.07);
+  --border2:   rgba(255,255,255,0.12);
+  --gold:      #c9a84c;
+  --gold2:     #e8c97a;
+  --gold-dim:  rgba(201,168,76,0.12);
+  --done:      #34d058;
+  --done-dim:  rgba(52,208,88,0.12);
+  --inp:       #e3a008;
+  --inp-dim:   rgba(227,160,8,0.12);
+  --nd:        #f05252;
+  --nd-dim:    rgba(240,82,82,0.12);
+  --text:      #edf2f7;
+  --text2:     #8899aa;
+  --text3:     #55667a;
+  --accent:    #3b9eff;
+  --accent-dim:rgba(59,158,255,0.1);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'Vazirmatn', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  direction: rtl;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* ─── NOISE TEXTURE OVERLAY ─── */
+body::before {
+  content: '';
+  position: fixed; inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+  pointer-events: none; z-index: 0; opacity: 0.4;
+}
+
+/* ─── HEADER ─── */
+.header {
+  position: sticky; top: 0; z-index: 200;
+  background: rgba(8,12,18,0.92);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border2);
+  padding: 0 32px;
+  display: flex; align-items: stretch; justify-content: space-between;
+  height: 64px;
+}
+
+.header-brand {
+  display: flex; align-items: center; gap: 14px;
+}
+
+.brand-emblem {
+  width: 40px; height: 40px;
+  background: linear-gradient(135deg, var(--gold), #8b6914);
+  border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 18px;
+  box-shadow: 0 0 20px rgba(201,168,76,0.3);
+  flex-shrink: 0;
+}
+
+.brand-text h1 {
+  font-size: 14px; font-weight: 700; color: var(--text);
+  letter-spacing: 0.02em;
+}
+.brand-text p {
+  font-size: 11px; color: var(--text2); margin-top: 2px;
+}
+
+.header-kpis {
+  display: flex; align-items: center; gap: 2px;
+}
+
+.hkpi {
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  padding: 0 20px; height: 100%;
+  border-right: 1px solid var(--border);
+  min-width: 80px;
+}
+.hkpi:last-child { border-right: none; }
+.hkpi .val {
+  font-size: 22px; font-weight: 800;
+  line-height: 1;
+}
+.hkpi .lbl { font-size: 10px; color: var(--text2); margin-top: 3px; }
+.hkpi.gold .val { color: var(--gold); }
+.hkpi.green .val { color: var(--done); }
+.hkpi.yellow .val { color: var(--inp); }
+.hkpi.red .val { color: var(--nd); }
+
+.header-meta {
+  display: flex; align-items: center; gap: 10px;
+}
+
+.sync-pill {
+  display: flex; align-items: center; gap: 6px;
+  background: var(--surface2);
+  border: 1px solid var(--border2);
+  border-radius: 20px;
+  padding: 5px 12px;
+  font-size: 11px; color: var(--text2);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.sync-pill:hover { border-color: var(--gold); color: var(--gold); }
+.sync-dot {
+  width: 6px; height: 6px; border-radius: 50%;
+  background: var(--done);
+  box-shadow: 0 0 6px var(--done);
+  animation: pulse 2s ease-in-out infinite;
+}
+@keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.4} }
+
+/* ─── NAVIGATION ─── */
+.nav {
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  padding: 0 32px;
+  display: flex; gap: 0;
+  position: sticky; top: 64px; z-index: 100;
+}
+
+.nav-item {
+  display: flex; align-items: center; gap: 8px;
+  padding: 14px 20px;
+  font-size: 13px; font-weight: 500;
+  color: var(--text2);
+  border: none; background: transparent;
+  cursor: pointer;
+  border-bottom: 2px solid transparent;
+  transition: all 0.2s;
+  font-family: 'Vazirmatn', sans-serif;
+  white-space: nowrap;
+}
+.nav-item:hover { color: var(--text); }
+.nav-item.active {
+  color: var(--gold);
+  border-bottom-color: var(--gold);
+}
+.nav-icon { font-size: 15px; }
+
+/* ─── MAIN CONTENT ─── */
+.main { padding: 28px 32px; position: relative; z-index: 1; }
+
+.page { display: none; animation: fadeIn 0.3s ease; }
+.page.active { display: block; }
+@keyframes fadeIn { from{opacity:0;transform:translateY(8px)} to{opacity:1;transform:translateY(0)} }
+
+/* ─── SECTION TITLE ─── */
+.section-title {
+  display: flex; align-items: center; gap: 10px;
+  margin-bottom: 20px;
+}
+.section-title h2 {
+  font-size: 15px; font-weight: 700; color: var(--text);
+}
+.section-title .line {
+  flex: 1; height: 1px; background: var(--border);
+}
+.section-title .badge {
+  font-size: 11px; color: var(--text2);
+  background: var(--surface2); border: 1px solid var(--border);
+  padding: 3px 10px; border-radius: 20px;
+}
+
+/* ─── KPI GRID ─── */
+.kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 14px;
+  margin-bottom: 24px;
+}
+
+.kpi-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 20px;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.2s, border-color 0.2s;
+}
+.kpi-card:hover { transform: translateY(-2px); border-color: var(--border2); }
+
+.kpi-card .kpi-accent {
+  position: absolute; top: 0; right: 0;
+  width: 3px; height: 100%;
+  border-radius: 0 16px 16px 0;
+}
+.kpi-card.k-gold .kpi-accent { background: var(--gold); }
+.kpi-card.k-green .kpi-accent { background: var(--done); }
+.kpi-card.k-yellow .kpi-accent { background: var(--inp); }
+.kpi-card.k-red .kpi-accent { background: var(--nd); }
+.kpi-card.k-blue .kpi-accent { background: var(--accent); }
+
+.kpi-icon { font-size: 22px; margin-bottom: 12px; }
+.kpi-num {
+  font-size: 38px; font-weight: 900; line-height: 1;
+  margin-bottom: 6px;
+}
+.kpi-card.k-gold .kpi-num { color: var(--gold); }
+.kpi-card.k-green .kpi-num { color: var(--done); }
+.kpi-card.k-yellow .kpi-num { color: var(--inp); }
+.kpi-card.k-red .kpi-num { color: var(--nd); }
+.kpi-card.k-blue .kpi-num { color: var(--accent); }
+
+.kpi-label { font-size: 12px; color: var(--text2); }
+.kpi-sub {
+  position: absolute; left: 14px; top: 14px;
+  font-size: 11px; font-weight: 700;
+  padding: 2px 8px; border-radius: 20px;
+}
+.k-green .kpi-sub { background: var(--done-dim); color: var(--done); }
+.k-yellow .kpi-sub { background: var(--inp-dim); color: var(--inp); }
+.k-red .kpi-sub { background: var(--nd-dim); color: var(--nd); }
+
+/* ─── GRID LAYOUTS ─── */
+.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px; }
+.grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; margin-bottom: 16px; }
+.grid-1-2 { display: grid; grid-template-columns: 1fr 2fr; gap: 16px; margin-bottom: 16px; }
+
+/* ─── CARDS ─── */
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+.card-head {
+  padding: 14px 18px;
+  border-bottom: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: space-between;
+}
+.card-head h3 { font-size: 13px; font-weight: 600; }
+.card-head .badge {
+  font-size: 11px; color: var(--text2);
+  background: var(--surface2); border: 1px solid var(--border);
+  padding: 3px 10px; border-radius: 20px;
+}
+.card-head .badge.gold { border-color: var(--gold); color: var(--gold); background: var(--gold-dim); }
+
+.card-body { padding: 18px; }
+
+/* ─── DONUT CHART ─── */
+.donut-wrap { display: flex; align-items: center; gap: 24px; }
+.donut-svg { flex-shrink: 0; }
+.donut-legend { display: flex; flex-direction: column; gap: 14px; flex: 1; }
+.leg-row { display: flex; align-items: center; gap: 10px; }
+.leg-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+.leg-info { flex: 1; }
+.leg-info .leg-name { font-size: 12px; color: var(--text2); }
+.leg-info .leg-val { font-size: 16px; font-weight: 700; }
+.leg-pct { font-size: 11px; color: var(--text3); background: var(--surface2); padding: 2px 7px; border-radius: 10px; }
+
+/* ─── BAR CHART ─── */
+.bar-list { display: flex; flex-direction: column; gap: 12px; }
+.bar-item {}
+.bar-meta { display: flex; justify-content: space-between; margin-bottom: 6px; font-size: 12px; }
+.bar-meta .name { color: var(--text); }
+.bar-meta .count { color: var(--text2); }
+.bar-track { height: 6px; background: var(--surface2); border-radius: 3px; overflow: hidden; }
+.bar-fill { height: 100%; border-radius: 3px; transition: width 1.2s cubic-bezier(0.4,0,0.2,1); }
+.bar-fill.gold { background: linear-gradient(90deg, var(--gold), var(--gold2)); }
+.bar-fill.blue { background: linear-gradient(90deg, var(--accent), #6ec3ff); }
+
+/* ─── FILTERS ─── */
+.filters {
+  display: flex; gap: 8px; margin-bottom: 16px;
+  flex-wrap: wrap; align-items: center;
+}
+.fsel {
+  background: var(--surface); border: 1px solid var(--border);
+  color: var(--text); font-family: 'Vazirmatn', sans-serif;
+  font-size: 12px; padding: 7px 12px; border-radius: 10px;
+  cursor: pointer; outline: none; transition: border-color 0.2s;
+}
+.fsel:focus { border-color: var(--gold); }
+.btn {
+  display: flex; align-items: center; gap: 6px;
+  font-family: 'Vazirmatn', sans-serif;
+  font-size: 12px; font-weight: 600;
+  padding: 7px 16px; border-radius: 10px;
+  border: none; cursor: pointer; transition: all 0.2s;
+}
+.btn-gold { background: linear-gradient(135deg, var(--gold), #8b6914); color: #0a0800; }
+.btn-gold:hover { opacity: 0.9; transform: translateY(-1px); }
+.btn-ghost { background: var(--surface2); border: 1px solid var(--border); color: var(--text2); }
+.btn-ghost:hover { border-color: var(--border2); color: var(--text); }
+.btn-auto { margin-right: auto; }
+
+/* ─── TABLE ─── */
+.tbl-wrap { overflow-x: auto; }
+table { width: 100%; border-collapse: collapse; }
+thead th {
+  padding: 10px 14px; text-align: right;
+  font-size: 11px; font-weight: 600; color: var(--text2);
+  background: var(--surface2);
+  border-bottom: 1px solid var(--border);
+  white-space: nowrap; letter-spacing: 0.03em;
+}
+tbody tr {
+  border-bottom: 1px solid rgba(255,255,255,0.03);
+  transition: background 0.15s;
+}
+tbody tr:hover { background: rgba(255,255,255,0.02); }
+tbody td {
+  padding: 10px 14px; font-size: 12px; vertical-align: middle;
+}
+
+/* ─── STATUS BADGES ─── */
+.sbadge {
+  display: inline-flex; align-items: center; gap: 5px;
+  padding: 4px 10px; border-radius: 20px;
+  font-size: 11px; font-weight: 600; white-space: nowrap;
+}
+.s-done { background: var(--done-dim); color: var(--done); }
+.s-inp  { background: var(--inp-dim);  color: var(--inp);  }
+.s-nd   { background: var(--nd-dim);   color: var(--nd);   }
+.s-none { background: var(--surface2); color: var(--text3); }
+.sdot   { width: 5px; height: 5px; border-radius: 50%; background: currentColor; }
+
+/* ─── SESSION PILL ─── */
+.spill {
+  display: inline-block;
+  background: var(--gold-dim); color: var(--gold);
+  border: 1px solid rgba(201,168,76,0.2);
+  padding: 2px 8px; border-radius: 10px;
+  font-size: 11px; font-weight: 600;
+}
+
+/* ─── PERSON TABLE ─── */
+.pbar-wrap { display: flex; align-items: center; gap: 8px; }
+.pbar-track { flex: 1; height: 4px; background: var(--surface2); border-radius: 2px; overflow: hidden; }
+.pbar-fill { height: 100%; border-radius: 2px; transition: width 1s ease; }
+.pbar-val { font-size: 11px; min-width: 32px; font-weight: 600; }
+
+/* ─── WORKGROUPS ─── */
+.wg-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+.wg-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 16px; padding: 20px;
+  transition: all 0.2s;
+  position: relative; overflow: hidden;
+}
+.wg-card:hover { border-color: var(--border2); transform: translateY(-2px); }
+.wg-card::after {
+  content: '';
+  position: absolute; bottom: 0; left: 0; right: 0;
+  height: 2px;
+}
+.wg-icon-wrap {
+  width: 44px; height: 44px; border-radius: 12px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 20px; margin-bottom: 14px;
+}
+.wg-name { font-size: 13px; font-weight: 700; margin-bottom: 4px; }
+.wg-chief { font-size: 11px; color: var(--text2); margin-bottom: 14px; }
+.wg-stats { display: flex; gap: 8px; }
+.wg-stat {
+  flex: 1; background: var(--surface2); border-radius: 10px;
+  padding: 8px; text-align: center;
+}
+.wg-stat .n { font-size: 18px; font-weight: 800; display: block; }
+.wg-stat .l { font-size: 10px; color: var(--text2); }
+.wg-progress { margin-top: 12px; }
+.wg-progress-track { height: 3px; background: var(--surface2); border-radius: 2px; overflow: hidden; margin-top: 6px; }
+.wg-progress-fill { height: 100%; border-radius: 2px; transition: width 1s ease; }
+
+/* ─── UNITS PAGE ─── */
+.units-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+.unit-card {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: 14px; padding: 16px;
+  display: flex; align-items: center; gap: 12px;
+  transition: all 0.2s;
+}
+.unit-card:hover { border-color: var(--border2); }
+.unit-icon {
+  width: 38px; height: 38px; border-radius: 10px;
+  background: var(--gold-dim); border: 1px solid rgba(201,168,76,0.2);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 17px; flex-shrink: 0;
+}
+.unit-name { font-size: 13px; font-weight: 600; }
+
+/* ─── PROPOSALS PAGE ─── */
+.proposal-grid { display: flex; flex-direction: column; gap: 10px; }
+.proposal-card {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: 14px; padding: 16px 20px;
+  display: flex; align-items: flex-start; gap: 16px;
+  transition: all 0.2s;
+}
+.proposal-card:hover { border-color: var(--border2); }
+.p-num {
+  width: 32px; height: 32px; border-radius: 8px;
+  background: var(--gold-dim); color: var(--gold);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 14px; font-weight: 800; flex-shrink: 0;
+}
+.p-content { flex: 1; }
+.p-topic { font-size: 11px; color: var(--gold); font-weight: 600; margin-bottom: 4px; }
+.p-solution { font-size: 13px; color: var(--text); line-height: 1.7; }
+.p-issue { font-size: 11px; color: var(--text2); margin-top: 4px; }
+
+/* ─── LOADING ─── */
+.loading {
+  display: flex; flex-direction: column; align-items: center;
+  justify-content: center; padding: 50px; color: var(--text2);
+  font-size: 13px; gap: 14px;
+}
+.spinner {
+  width: 32px; height: 32px;
+  border: 2px solid var(--border);
+  border-top-color: var(--gold);
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* ─── FOOTER ─── */
+.footer {
+  text-align: center; padding: 20px;
+  color: var(--text3); font-size: 11px;
+  border-top: 1px solid var(--border);
+  margin-top: 12px;
+}
+.footer span { color: var(--text2); }
+
+/* ─── EMPTY STATE ─── */
+.empty { text-align: center; padding: 40px; color: var(--text2); font-size: 13px; }
+
+/* ─── RESPONSIVE ─── */
+@media(max-width: 1024px) {
+  .kpi-grid { grid-template-columns: repeat(3, 1fr); }
+  .grid-2, .grid-3, .grid-1-2 { grid-template-columns: 1fr; }
+  .wg-grid { grid-template-columns: repeat(2, 1fr); }
+  .units-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media(max-width: 640px) {
+  .header { padding: 0 16px; }
+  .main { padding: 16px; }
+  .nav { padding: 0 16px; }
+  .kpi-grid { grid-template-columns: repeat(2, 1fr); }
+  .wg-grid, .units-grid { grid-template-columns: 1fr; }
+  .header-kpis { display: none; }
+}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="header">
+  <div class="header-brand">
+    <div class="brand-emblem">🏛️</div>
+    <div class="brand-text">
+      <h1>کارگروه همدلی با فعالان اقتصادی در شرایط جنگ</h1>
+      <p>اتاق بازرگانی، صنایع، معادن و کشاورزی اصفهان</p>
+    </div>
+  </div>
+  <div class="header-kpis">
+    <div class="hkpi gold"><span class="val" id="h-total">—</span><span class="lbl">کل مصوبات</span></div>
+    <div class="hkpi green"><span class="val" id="h-done">—</span><span class="lbl">انجام شده</span></div>
+    <div class="hkpi yellow"><span class="val" id="h-inp">—</span><span class="lbl">در جریان</span></div>
+    <div class="hkpi red"><span class="val" id="h-nd">—</span><span class="lbl">معوق</span></div>
+    <div class="hkpi gold"><span class="val" id="h-ses">—</span><span class="lbl">جلسات</span></div>
+  </div>
+  <div class="header-meta">
+    <div class="sync-pill" onclick="loadData()">
+      <div class="sync-dot"></div>
+      <span id="sync-time">در حال اتصال...</span>
+    </div>
+  </div>
+</header>
+
+<!-- NAVIGATION -->
+<nav class="nav">
+  <button class="nav-item active" onclick="showPage('overview',this)"><span class="nav-icon">📊</span> نگاه کلی</button>
+  <button class="nav-item" onclick="showPage('matrix',this)"><span class="nav-icon">📋</span> ماتریس مصوبات</button>
+  <button class="nav-item" onclick="showPage('persons',this)"><span class="nav-icon">👤</span> مسئولین</button>
+  <button class="nav-item" onclick="showPage('workgroups',this)"><span class="nav-icon">🏗️</span> کارگروه‌ها</button>
+  <button class="nav-item" onclick="showPage('units',this)"><span class="nav-icon">🏢</span> واحدها</button>
+  <button class="nav-item" onclick="showPage('proposals',this)"><span class="nav-icon">💡</span> راهکارها</button>
+</nav>
+
+<!-- MAIN -->
+<main class="main">
+
+  <!-- ══════════════ PAGE: OVERVIEW ══════════════ -->
+  <div class="page active" id="page-overview">
+
+    <div class="kpi-grid">
+      <div class="kpi-card k-gold">
+        <div class="kpi-accent"></div>
+        <div class="kpi-icon">📌</div>
+        <div class="kpi-num" id="kpi-total">—</div>
+        <div class="kpi-label">کل مصوبات</div>
+      </div>
+      <div class="kpi-card k-green">
+        <div class="kpi-accent"></div>
+        <div class="kpi-sub" id="kpi-done-pct">—</div>
+        <div class="kpi-icon">✅</div>
+        <div class="kpi-num" id="kpi-done">—</div>
+        <div class="kpi-label">انجام شده</div>
+      </div>
+      <div class="kpi-card k-yellow">
+        <div class="kpi-accent"></div>
+        <div class="kpi-sub" id="kpi-inp-pct">—</div>
+        <div class="kpi-icon">⏳</div>
+        <div class="kpi-num" id="kpi-inp">—</div>
+        <div class="kpi-label">در حال انجام</div>
+      </div>
+      <div class="kpi-card k-red">
+        <div class="kpi-accent"></div>
+        <div class="kpi-sub" id="kpi-nd-pct">—</div>
+        <div class="kpi-icon">🔴</div>
+        <div class="kpi-num" id="kpi-nd">—</div>
+        <div class="kpi-label">انجام نشده</div>
+      </div>
+      <div class="kpi-card k-blue">
+        <div class="kpi-accent"></div>
+        <div class="kpi-icon">🤝</div>
+        <div class="kpi-num" id="kpi-ses">—</div>
+        <div class="kpi-label"> جلسات کمیته همدلی</div>
+      </div>
+    </div>
+
+    <div class="grid-2">
+      <div class="card">
+        <div class="card-head">
+          <h3>وضعیت کلی مصوبات</h3>
+          <span class="badge gold" id="donut-badge">—</span>
+        </div>
+        <div class="card-body">
+          <div class="donut-wrap">
+            <svg class="donut-svg" width="140" height="140" viewBox="0 0 140 140">
+              <circle cx="70" cy="70" r="52" fill="none" stroke="#151d2e" stroke-width="20"/>
+              <circle id="d-done" cx="70" cy="70" r="52" fill="none" stroke="#34d058" stroke-width="20"
+                stroke-dasharray="0 327" stroke-dashoffset="0" transform="rotate(-90 70 70)"
+                style="transition:stroke-dasharray 1.2s cubic-bezier(0.4,0,0.2,1)"/>
+              <circle id="d-inp" cx="70" cy="70" r="52" fill="none" stroke="#e3a008" stroke-width="20"
+                stroke-dasharray="0 327" stroke-dashoffset="0" transform="rotate(-90 70 70)"
+                style="transition:stroke-dasharray 1.2s cubic-bezier(0.4,0,0.2,1)"/>
+              <circle id="d-nd" cx="70" cy="70" r="52" fill="none" stroke="#f05252" stroke-width="20"
+                stroke-dasharray="0 327" stroke-dashoffset="0" transform="rotate(-90 70 70)"
+                style="transition:stroke-dasharray 1.2s cubic-bezier(0.4,0,0.2,1)"/>
+              <text x="70" y="64" text-anchor="middle" fill="#edf2f7" font-size="22" font-weight="800"
+                font-family="Vazirmatn" id="d-num">—</text>
+              <text x="70" y="80" text-anchor="middle" fill="#8899aa" font-size="11"
+                font-family="Vazirmatn">مصوبه</text>
+            </svg>
+            <div class="donut-legend">
+              <div class="leg-row">
+                <div class="leg-dot" style="background:#34d058"></div>
+                <div class="leg-info">
+                  <div class="leg-name">انجام شده</div>
+                  <div class="leg-val" style="color:#34d058" id="ld-done">—</div>
+                </div>
+                <div class="leg-pct" id="lp-done">—</div>
+              </div>
+              <div class="leg-row">
+                <div class="leg-dot" style="background:#e3a008"></div>
+                <div class="leg-info">
+                  <div class="leg-name">در حال انجام</div>
+                  <div class="leg-val" style="color:#e3a008" id="ld-inp">—</div>
+                </div>
+                <div class="leg-pct" id="lp-inp">—</div>
+              </div>
+              <div class="leg-row">
+                <div class="leg-dot" style="background:#f05252"></div>
+                <div class="leg-info">
+                  <div class="leg-name">انجام نشده</div>
+                  <div class="leg-val" style="color:#f05252" id="ld-nd">—</div>
+                </div>
+                <div class="leg-pct" id="lp-nd">—</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-head">
+          <h3>مصوبات به تفکیک جلسه</h3>
+          <span class="badge" id="ses-badge">—</span>
+        </div>
+        <div class="card-body">
+          <div class="bar-list" id="session-bars">
+            <div class="loading"><div class="spinner"></div>در حال بارگذاری...</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-head">
+        <h3>مسئولین پرتکرار</h3>
+        <span class="badge">بر اساس تعداد مصوبه</span>
+      </div>
+      <div class="card-body">
+        <div class="bar-list" id="top-persons">
+          <div class="loading"><div class="spinner"></div></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ══════════════ PAGE: MATRIX ══════════════ -->
+  <div class="page" id="page-matrix">
+    <div class="filters">
+      <select class="fsel" id="f-session" onchange="renderTable()"><option value="">همه جلسات</option></select>
+      <select class="fsel" id="f-person" onchange="renderTable()"><option value="">همه مسئولین</option></select>
+      <select class="fsel" id="f-status" onchange="renderTable()">
+        <option value="">همه وضعیت‌ها</option>
+        <option value="انجام شده">✅ انجام شده</option>
+        <option value="در حال انجام">⏳ در حال انجام</option>
+        <option value="انجام نشده">🔴 انجام نشده</option>
+      </select>
+      <button class="btn btn-gold btn-auto" onclick="loadData()">🔄 بروزرسانی</button>
+      <button class="btn btn-ghost" onclick="exportCSV()">⬇️ خروجی CSV</button>
+    </div>
+    <div class="card">
+      <div class="tbl-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>جلسه</th>
+              <th>ش.م</th>
+              <th>متن مصوبه</th>
+              <th>مسئول پیگیری</th>
+              <th>مهلت</th>
+              <th>وضعیت</th>
+              <th>توضیحات</th>
+            </tr>
+          </thead>
+          <tbody id="tbl-body">
+            <tr><td colspan="8"><div class="loading"><div class="spinner"></div>در حال بارگذاری از گوگل شیت...</div></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════ PAGE: PERSONS ══════════════ -->
+  <div class="page" id="page-persons">
+    <div class="card">
+      <div class="card-head">
+        <h3>عملکرد مسئولین پیگیری</h3>
+        <span class="badge gold">آپدیت خودکار از گوگل شیت</span>
+      </div>
+      <div class="tbl-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>مسئول پیگیری</th>
+              <th style="text-align:center">کل</th>
+              <th style="text-align:center">انجام شده</th>
+              <th style="text-align:center">در جریان</th>
+              <th style="text-align:center">معوق</th>
+              <th>درصد تکمیل</th>
+            </tr>
+          </thead>
+          <tbody id="persons-tbl">
+            <tr><td colspan="6"><div class="loading"><div class="spinner"></div></div></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════ PAGE: WORKGROUPS ══════════════ -->
+  <div class="page" id="page-workgroups">
+    <div class="section-title">
+      <h2>کارگروه‌های تخصصی</h2>
+      <div class="line"></div>
+      <span class="badge">۶ کارگروه فعال</span>
+    </div>
+    <div class="wg-grid" id="wg-grid">
+      <div class="loading" style="grid-column:1/-1"><div class="spinner"></div></div>
+    </div>
+  </div>
+
+  <!-- ══════════════ PAGE: UNITS ══════════════ -->
+  <div class="page" id="page-units">
+    <div class="section-title">
+      <h2>واحدها و بخش‌های فعال</h2>
+      <div class="line"></div>
+      <span class="badge">بر اساس اسلایدها</span>
+    </div>
+    <div class="units-grid">
+      <div class="unit-card"><div class="unit-icon">📈</div><div class="unit-name">واحد توسعه کسب و کار و سرمایه‌گذاری</div></div>
+      <div class="unit-card"><div class="unit-icon">🌙</div><div class="unit-name">بنیاد نصف جهان</div></div>
+      <div class="unit-card"><div class="unit-icon">💡</div><div class="unit-name">سرای نوآوری</div></div>
+      <div class="unit-card"><div class="unit-icon">🏦</div><div class="unit-name">دفتر خدمات سرمایه‌گذاری ITDO</div></div>
+      <div class="unit-card"><div class="unit-icon">⚖️</div><div class="unit-name">شورای راهبردی فرهنگ کار</div></div>
+      <div class="unit-card"><div class="unit-icon">👩</div><div class="unit-name">شورای عالی بانوان</div></div>
+      <div class="unit-card"><div class="unit-icon">🧑‍💼</div><div class="unit-name">شورای اتاق جوانان</div></div>
+      <div class="unit-card"><div class="unit-icon">🤖</div><div class="unit-name">شوراهای تخصصی هوش مصنوعی</div></div>
+      <div class="unit-card"><div class="unit-icon">🚀</div><div class="unit-name">مرکز کارآفرینی</div></div>
+      <div class="unit-card"><div class="unit-icon">📦</div><div class="unit-name">SPX</div></div>
+      <div class="unit-card"><div class="unit-icon">🎨</div><div class="unit-name">اقتصاد هنر</div></div>
+    </div>
+
+    <div class="section-title" style="margin-top:28px">
+      <h2>آمار کلیدی پویش هواداریم</h2>
+      <div class="line"></div>
+    </div>
+    <div class="kpi-grid" style="grid-template-columns:repeat(4,1fr)">
+      <div class="kpi-card k-gold"><div class="kpi-accent"></div><div class="kpi-icon">👥</div><div class="kpi-num">۱۱۰۰+</div><div class="kpi-label">اعضای پویش هواداریم</div></div>
+      <div class="kpi-card k-blue"><div class="kpi-accent"></div><div class="kpi-icon">🏢</div><div class="kpi-num">۷۰+</div><div class="kpi-label">تشکل‌های همراه</div></div>
+      <div class="kpi-card k-green"><div class="kpi-accent"></div><div class="kpi-icon">📅</div><div class="kpi-num">۶</div><div class="kpi-label">جلسات اجرایی</div></div>
+      <div class="kpi-card k-red"><div class="kpi-accent"></div><div class="kpi-icon">🏭</div><div class="kpi-num">۲۱۵+</div><div class="kpi-label">بنگاه آسیب‌دیده</div></div>
+    </div>
+  </div>
+
+  <!-- ══════════════ PAGE: PROPOSALS ══════════════ -->
+  <div class="page" id="page-proposals">
+    <div class="section-title">
+      <h2>راهکارهای پیشنهادی برای امروز</h2>
+      <div class="line"></div>
+      <span class="badge">۶ محور اصلی</span>
+    </div>
+    <div class="proposal-grid" id="proposals-grid">
+      <div class="loading"><div class="spinner"></div>در حال بارگذاری...</div>
+    </div>
+  </div>
+
+</main>
+
+<footer class="footer">
+  ستاد پشتیبانی فعالین اقتصادی — اتاق بازرگانی اصفهان &nbsp;|&nbsp;
+  آخرین بروزرسانی: <span id="last-update">—</span>
+</footer>
+
+<script>
+// ── CONFIG ──────────────────────────────────────────────
+const SHEET_ID   = "1Ca8-cKdsItjPD8k4SbfyeVsEWjV19U-aitdoJ_wYfHY";
+const SHEET_NAME = encodeURIComponent("مصوبات");
+const API_URL    = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:json&sheet=${SHEET_NAME}`;
+const PROPOSALS_URL = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:json&sheet=${encodeURIComponent("راهکارها")}`;
+const WORKGROUPS = [
+  { name:"بازار و اصناف",            chief:"محمد نمکی‌زاده",     icon:"🛒", color:"#3b9eff" },
+  { name:"پایش و پشتیبانی تجارت",    chief:"جلیل مشکاتی",        icon:"📦", color:"#34d058" },
+  { name:"شبکه‌سازی تولید و تجارت",  chief:"اصغر آذربایجانی",    icon:"🔗", color:"#c9a84c" },
+  { name:"تاب‌آوری اقتصادی",          chief:"آقای برکتین",         icon:"📈", color:"#f05252" },
+  { name:"اشتغال موقت",               chief:"آقای معینی",          icon:"💼", color:"#a371f7" },
+  { name:"پشتیبانی مردمی شهری",      chief:"وحید فولادگر",       icon:"🏙️", color:"#3b9eff" },
+];
+
+let allData = [];
+
+// ── LOAD PROPOSALS ───────────────────────────────────────
+async function loadProposals() {
+  try {
+    const res  = await fetch(PROPOSALS_URL + '&t=' + Date.now());
+    const text = await res.text();
+    const json = JSON.parse(text.match(/google\.visualization\.Query\.setResponse\(([\s\S]*?)\);/)[1]);
+    const rows = json.table.rows;
+    const data = rows.slice(2).filter(r => r.c && r.c[0] && r.c[0].v !== null).map(r => {
+      const g = (i) => (r.c[i] && r.c[i].v != null) ? String(r.c[i].v).trim() : "";
+      return { num:g(0), topic:g(1), solution:g(2), person:g(3), status:g(4) };
+    });
+    document.getElementById('proposals-grid').innerHTML = data.length
+      ? data.map(p => `
+        <div class="proposal-card">
+          <div class="p-num">${p.num}</div>
+          <div class="p-content">
+            <div class="p-topic">${p.topic}</div>
+            <div class="p-solution">${p.solution}</div>
+<div class="p-issue" style="margin-top:6px">
+  ${p.person ? `👤 ${p.person}` : ''} 
+  ${p.status ? `&nbsp;|&nbsp; <span style="color:${p.status==='انجام شده'?'#34d058':p.status==='در حال انجام'?'#e3a008':'#f05252'}">${p.status}</span>` : ''}
+</div>
+          </div>
+        </div>`).join('')
+      : '<div class="empty">داده‌ای یافت نشد</div>';
+  } catch(e) {
+    document.getElementById('proposals-grid').innerHTML = '<div class="empty">⚠️ خطا در بارگذاری راهکارها</div>';
+  }
+}
+
+// ── LOAD DATA ────────────────────────────────────────────
+async function loadData() {
+  document.getElementById('sync-time').textContent = 'در حال اتصال...';
+  try {
+    const res  = await fetch(API_URL + '&t=' + Date.now());
+    const text = await res.text();
+    const json = JSON.parse(text.match(/google\.visualization\.Query\.setResponse\(([\s\S]*?)\);/)[1]);
+    const rows = json.table.rows;
+
+    allData = rows.slice(0).filter(r => r.c && r.c[0] && r.c[0].v !== null).map(r => {
+      const g = (i) => (r.c[i] && r.c[i].v != null) ? String(r.c[i].v).trim() : "";
+      return { session:g(0), num:g(1), text:g(2), person:g(3), deadline:g(4), status:g(5), updated:g(6), notes:g(7) };
+    });
+
+    const now = new Date().toLocaleString('fa-IR');
+    document.getElementById('last-update').textContent = now;
+    document.getElementById('sync-time').textContent = now;
+
+    populateFilters();
+    renderAll();
+  } catch(e) {
+    console.error(e);
+    document.getElementById('sync-time').textContent = '⚠️ خطا در اتصال';
+    document.getElementById('tbl-body').innerHTML =
+      `<tr><td colspan="8"><div class="empty">⚠️ خطا در بارگذاری. مطمئن شو گوگل شیت Publish شده باشد.</div></td></tr>`;
+  }
+}
+
+// ── RENDER ALL ───────────────────────────────────────────
+function renderAll() {
+  const total = allData.length;
+  const done  = allData.filter(r => r.status === 'انجام شده').length;
+  const inp   = allData.filter(r => r.status === 'در حال انجام').length;
+  const nd    = allData.filter(r => r.status === 'انجام نشده').length;
+  const ses   = new Set(allData.map(r => r.session)).size;
+  const pct   = n => total ? Math.round(n/total*100)+'%' : '0%';
+
+  // Header KPIs
+  ['h-total','kpi-total','d-num'].forEach(id => { const el=document.getElementById(id); if(el) el.textContent=total; });
+  document.getElementById('h-done').textContent = done;
+  document.getElementById('h-inp').textContent  = inp;
+  document.getElementById('h-nd').textContent   = nd;
+  document.getElementById('h-ses').textContent  = ses;
+  document.getElementById('kpi-ses').textContent = ses;
+
+  // Overview KPIs
+  document.getElementById('kpi-done').textContent    = done;
+  document.getElementById('kpi-inp').textContent     = inp;
+  document.getElementById('kpi-nd').textContent      = nd;
+  document.getElementById('kpi-done-pct').textContent = pct(done);
+  document.getElementById('kpi-inp-pct').textContent  = pct(inp);
+  document.getElementById('kpi-nd-pct').textContent   = pct(nd);
+
+  // Donut
+  document.getElementById('donut-badge').textContent = total + ' مصوبه';
+  document.getElementById('ld-done').textContent = done;
+  document.getElementById('ld-inp').textContent  = inp;
+  document.getElementById('ld-nd').textContent   = nd;
+  document.getElementById('lp-done').textContent = pct(done);
+  document.getElementById('lp-inp').textContent  = pct(inp);
+  document.getElementById('lp-nd').textContent   = pct(nd);
+  renderDonut(total, done, inp, nd);
+
+  renderSessionBars();
+  renderTopPersons();
+  renderTable();
+  renderPersonsTable();
+  renderWorkgroups();
+}
+
+function renderDonut(total, done, inp, nd) {
+  const C = 2 * Math.PI * 52;
+  const dA = total ? (done/total)*C : 0;
+  const iA = total ? (inp/total)*C  : 0;
+  const nA = total ? (nd/total)*C   : 0;
+  const set = (id, da, off) => {
+    const el = document.getElementById(id);
+    el.setAttribute('stroke-dasharray', `${da} ${C-da}`);
+    el.setAttribute('stroke-dashoffset', -off);
+  };
+  set('d-done', dA, 0);
+  set('d-inp',  iA, dA);
+  set('d-nd',   nA, dA+iA);
+  document.getElementById('d-num').textContent = total;
+}
+
+function renderSessionBars() {
+  const s = {};
+  allData.forEach(r => { s[r.session] = (s[r.session]||0)+1; });
+  const entries = Object.entries(s).sort((a,b) => Number(a[0])-Number(b[0]));
+  const max = Math.max(...entries.map(e => e[1]));
+  document.getElementById('ses-badge').textContent = entries.length + ' جلسه';
+  document.getElementById('session-bars').innerHTML = entries.map(([ses, n]) => `
+    <div class="bar-item">
+      <div class="bar-meta">
+        <span class="name">جلسه ${ses}</span>
+        <span class="count">${n} مصوبه</span>
+      </div>
+      <div class="bar-track">
+        <div class="bar-fill blue" style="width:${n/max*100}%"></div>
+      </div>
+    </div>`).join('');
+  }
+
+function renderTopPersons() {
+  const c = {};
+  allData.forEach(r => { c[r.person] = (c[r.person]||0)+1; });
+  const sorted = Object.entries(c).sort((a,b) => b[1]-a[1]).slice(0,8);
+  const max = sorted[0]?.[1] || 1;
+  document.getElementById('top-persons').innerHTML = sorted.map(([p, n]) => `
+    <div class="bar-item">
+      <div class="bar-meta">
+        <span class="name">${p}</span>
+        <span class="count">${n} مصوبه</span>
+      </div>
+      <div class="bar-track">
+        <div class="bar-fill gold" style="width:${n/max*100}%"></div>
+      </div>
+    </div>`).join('');
+}
+
+function statusBadge(s) {
+  if (s === 'انجام شده')    return `<span class="sbadge s-done"><span class="sdot"></span>انجام شده</span>`;
+  if (s === 'در حال انجام') return `<span class="sbadge s-inp"><span class="sdot"></span>در حال انجام</span>`;
+  if (s === 'انجام نشده')   return `<span class="sbadge s-nd"><span class="sdot"></span>انجام نشده</span>`;
+  return `<span class="sbadge s-none"><span class="sdot"></span>تعیین نشده</span>`;
+}
+
+function renderTable() {
+  const fs  = document.getElementById('f-session').value;
+  const fp  = document.getElementById('f-person').value;
+  const fst = document.getElementById('f-status').value;
+  const filtered = allData.filter(r =>
+    (!fs  || r.session === fs) &&
+    (!fp  || r.person  === fp) &&
+    (!fst || r.status  === fst)
+  );
+  document.getElementById('tbl-body').innerHTML = filtered.length
+    ? filtered.map((r, i) => `
+        <tr>
+          <td style="color:var(--text3)">${i+1}</td>
+          <td><span class="spill">جلسه ${r.session}</span></td>
+          <td style="color:var(--text2)">${r.num}</td>
+          <td style="max-width:320px;line-height:1.7">${r.text}</td>
+          <td style="white-space:nowrap;color:var(--text)">${r.person}</td>
+          <td style="color:var(--text2);white-space:nowrap">${r.deadline}</td>
+          <td>${statusBadge(r.status)}</td>
+          <td style="color:var(--text2);font-size:11px">${r.notes}</td>
+        </tr>`).join('')
+    : `<tr><td colspan="8"><div class="empty">نتیجه‌ای یافت نشد</div></td></tr>`;
+}
+
+function renderPersonsTable() {
+  const p = {};
+  allData.forEach(r => {
+    if (!p[r.person]) p[r.person] = { total:0, done:0, inp:0, nd:0 };
+    p[r.person].total++;
+    if (r.status === 'انجام شده')    p[r.person].done++;
+    else if (r.status === 'در حال انجام') p[r.person].inp++;
+    else if (r.status === 'انجام نشده')   p[r.person].nd++;
+  });
+  const sorted = Object.entries(p).sort((a,b) => b[1].total - a[1].total);
+  document.getElementById('persons-tbl').innerHTML = sorted.map(([name, s]) => {
+    const pct = s.total ? Math.round(s.done/s.total*100) : 0;
+    const col = pct>=70 ? '#34d058' : pct>=30 ? '#e3a008' : '#f05252';
+    return `<tr>
+      <td style="font-weight:600">${name}</td>
+      <td style="text-align:center;font-weight:700">${s.total}</td>
+      <td style="text-align:center;color:#34d058;font-weight:600">${s.done}</td>
+      <td style="text-align:center;color:#e3a008;font-weight:600">${s.inp}</td>
+      <td style="text-align:center;color:#f05252;font-weight:600">${s.nd}</td>
+      <td style="min-width:150px">
+        <div class="pbar-wrap">
+          <div class="pbar-track">
+            <div class="pbar-fill" style="width:${pct}%;background:${col}"></div>
+          </div>
+          <span class="pbar-val" style="color:${col}">${pct}%</span>
+        </div>
+      </td>
+    </tr>`;
+  }).join('');
+}
+
+function renderWorkgroups() {
+  document.getElementById('wg-grid').innerHTML = WORKGROUPS.map(wg => {
+    const kw   = wg.chief.split(' ').pop();
+    const wgR  = allData.filter(r => r.person.includes(kw));
+    const done = wgR.filter(r => r.status === 'انجام شده').length;
+    const pct  = wgR.length ? Math.round(done/wgR.length*100) : 0;
+    return `<div class="wg-card">
+      <div class="wg-icon-wrap" style="background:${wg.color}18;border:1px solid ${wg.color}30">
+        ${wg.icon}
+      </div>
+      <div class="wg-name">${wg.name}</div>
+      <div class="wg-chief">مسئول: ${wg.chief}</div>
+      <div class="wg-stats">
+        <div class="wg-stat">
+          <span class="n" style="color:${wg.color}">${wgR.length}</span>
+          <span class="l">مصوبه</span>
+        </div>
+        <div class="wg-stat">
+          <span class="n" style="color:#34d058">${done}</span>
+          <span class="l">انجام شده</span>
+        </div>
+        <div class="wg-stat">
+          <span class="n" style="color:${pct>=70?'#34d058':pct>=30?'#e3a008':'#f05252'}">${pct}%</span>
+          <span class="l">پیشرفت</span>
+        </div>
+      </div>
+      <div class="wg-progress">
+        <div class="wg-progress-track">
+          <div class="wg-progress-fill" style="width:${pct}%;background:${wg.color}"></div>
+        </div>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function populateFilters() {
+  const sessions = [...new Set(allData.map(r => r.session))].sort((a,b) => Number(a)-Number(b));
+  const persons  = [...new Set(allData.map(r => r.person))].sort();
+  document.getElementById('f-session').innerHTML =
+    '<option value="">همه جلسات</option>' + sessions.map(s => `<option value="${s}">جلسه ${s}</option>`).join('');
+  document.getElementById('f-person').innerHTML =
+    '<option value="">همه مسئولین</option>' + persons.map(p => `<option value="${p}">${p}</option>`).join('');
+}
+
+function showPage(name, el) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.nav-item').forEach(t => t.classList.remove('active'));
+  document.getElementById('page-'+name).classList.add('active');
+  el.classList.add('active');
+}
+
+function exportCSV() {
+  const h = ['جلسه','شماره','مصوبه','مسئول','مهلت','وضعیت','توضیحات'];
+  const rows = allData.map(r => [r.session, r.num, `"${r.text}"`, r.person, r.deadline, r.status||'تعیین نشده', r.notes]);
+  const csv  = '\uFEFF' + [h, ...rows].map(r => r.join(',')).join('\n');
+  const a    = document.createElement('a');
+  a.href     = 'data:text/csv;charset=utf-8,' + encodeURIComponent(csv);
+  a.download = 'مصوبات.csv';
+  a.click();
+}
+
+// ── INIT ─────────────────────────────────────────────────
+loadData();
+loadProposals();
+setInterval(loadData, 5 * 60 * 1000);
+</script>
+</body>
+</html>
